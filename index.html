@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virasat - India's Digital Independence Saga</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --saffron: #FF9933;
+            --white: #FFFFFF;
+            --green: #138808;
+            --navy: #0d1b2a;
+            --light-navy: #1b263b;
+            --light-blue: #415a77;
+            --slate: #778da9;
+            --light-slate: #e0e1dd;
+            --accent-glow: rgba(255, 153, 51, 0.5);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--light-slate);
+            background-color: var(--navy);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        /* Animated Background */
+        .bg-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                radial-gradient(circle at 15% 20%, rgba(65, 90, 119, 0.2) 0%, transparent 40%),
+                radial-gradient(circle at 85% 80%, rgba(255, 153, 51, 0.1) 0%, transparent 40%);
+            background-attachment: fixed;
+            z-index: -1;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(13, 27, 42, 0.7);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(65, 90, 119, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.8rem;
+        }
+
+        .navbar-brand img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .nav-link {
+            color: var(--slate);
+            font-weight: 600;
+            transition: color 0.3s ease;
+            position: relative;
+            padding: 8px 0;
+            margin: 0 15px;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--saffron);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--white);
+        }
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            padding: 0 15px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content h1 {
+            font-size: 4.5rem;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, var(--white), var(--slate));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .hero-content .highlight {
+            color: var(--saffron);
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            color: var(--slate);
+        }
+
+        .btn-glow {
+            background: var(--saffron);
+            color: var(--white);
+            font-weight: 600;
+            padding: 14px 40px;
+            border: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        .btn-glow:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 30px var(--accent-glow);
+            color: var(--white);
+        }
+        
+        /* Content Sections */
+        .content-section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 3rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--saffron), var(--green));
+            border-radius: 2px;
+        }
+
+        .glass-card {
+            background: rgba(27, 38, 59, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(65, 90, 119, 0.3);
+            border-radius: 15px;
+            padding: 30px;
+            height: 100%;
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border-color: var(--saffron);
+        }
+        
+        /* Timeline Section */
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .timeline-line {
+            position: absolute;
+            width: 4px;
+            background: var(--light-navy);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+            border-radius: 10px;
+        }
+        .timeline-line-progress {
+            width: 100%;
+            height: 0;
+            background: linear-gradient(to bottom, var(--saffron), var(--green));
+            transition: height 0.5s ease-out;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+        }
+
+        .timeline-item:nth-child(odd) { left: 0; }
+        .timeline-item:nth-child(even) { left: 50%; }
+
+        .timeline-item .timeline-icon {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            right: -25px;
+            top: 30px;
+            background: var(--navy);
+            border: 4px solid var(--saffron);
+            border-radius: 50%;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--saffron);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:nth-child(even) .timeline-icon {
+            left: -25px;
+        }
+        
+        .timeline-item:hover .timeline-icon {
+            background: var(--saffron);
+            color: var(--white);
+            transform: scale(1.1);
+        }
+
+        .timeline-content {
+            background: rgba(27, 38, 59, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(65, 90, 119, 0.3);
+            border-radius: 15px;
+            padding: 30px;
+        }
+        
+        .timeline-content h3 { color: var(--saffron); }
+
+        /* Stats Section */
+        .stats-section {
+            background: linear-gradient(135deg, rgba(13, 27, 42, 0.8), rgba(27, 38, 59, 0.9));
+        }
+        
+        .stat-number {
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--saffron);
+        }
+        .stat-label {
+            font-size: 1.1rem;
+            color: var(--slate);
+        }
+        
+        /* Innovations Section / India Stack Section */
+        .innovation-card, .stack-card {
+            background: var(--light-navy);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        .innovation-card:hover, .stack-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(255,153,51,0.2);
+        }
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+        }
+        .card-body .card-title {
+            color: var(--saffron);
+        }
+        .card-body .icon {
+            font-size: 3rem;
+            color: var(--saffron);
+            margin-bottom: 15px;
+        }
+
+        /* Global Impact */
+        #map-container {
+            height: 500px;
+            background: var(--light-navy);
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+        #map-container svg {
+            width: 100%;
+            height: 100%;
+        }
+        .country {
+            fill: var(--light-blue);
+            stroke: var(--navy);
+            stroke-width: 1;
+        }
+        .adopter-country {
+            fill: var(--saffron);
+            transition: fill 0.3s ease;
+        }
+        .adopter-country:hover {
+            fill: var(--green);
+        }
+        
+        /* === NEW STYLES FOR ACCORDION READABILITY === */
+        #future .accordion-item {
+            background-color: transparent;
+            border: 1px solid var(--light-blue);
+            border-radius: 0.5rem !important;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+
+        #future .accordion-button {
+            background-color: var(--light-navy);
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        #future .accordion-button:not(.collapsed) {
+            background-color: var(--saffron);
+            color: var(--navy);
+            box-shadow: none;
+        }
+
+        #future .accordion-button:focus {
+            box-shadow: 0 0 0 0.25rem var(--accent-glow);
+        }
+
+        #future .accordion-button::after {
+            filter: brightness(0) invert(1);
+        }
+        
+        #future .accordion-button:not(.collapsed)::after {
+            filter: brightness(0);
+        }
+
+        #future .accordion-body {
+            background-color: var(--navy);
+            color: var(--light-slate); /* Higher contrast text color */
+        }
+        /* === END OF NEW STYLES === */
+
+        /* Footer */
+        .footer {
+            background: var(--light-navy);
+            color: var(--slate);
+            padding: 60px 0 30px;
+        }
+        .footer h5 {
+            color: var(--white);
+            margin-bottom: 20px;
+        }
+        .footer-links a {
+            color: var(--slate);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .footer-links a:hover {
+            color: var(--saffron);
+            padding-left: 5px;
+        }
+        .social-links a {
+            color: var(--slate);
+            font-size: 1.2rem;
+            margin-right: 20px;
+            transition: all 0.3s ease;
+        }
+        .social-links a:hover {
+            color: var(--saffron);
+            transform: translateY(-3px);
+        }
+        
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-in.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero-content h1 { font-size: 3.5rem; }
+            .timeline-line { left: 30px; }
+            .timeline-item { width: 100%; padding-left: 70px; left: 0 !important; }
+            .timeline-item .timeline-icon { left: 5px; }
+        }
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2.8rem; }
+            .section-title h2 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body data-bs-spy="scroll" data-bs-target="#navbar" data-bs-offset="100">
+
+    <div class="bg-pattern"></div>
+
+    <nav id="navbar" class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand text-white" href="#">
+                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/41/Flag_of_India.svg/125px-Flag_of_India.svg.png" alt="Indian Flag"> VIRASAT
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#journey">The Journey</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#india-stack">India Stack</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#milestones">Milestones</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#innovations">Innovations</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#global-impact">Global Impact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#future">Future</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="hero-section">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="fade-in">Crafting a <span class="highlight">Digitally Sovereign</span> Nation</h1>
+                <p class="fade-in" style="transition-delay: 0.2s;">From technological dependency to global leadership, Virasat chronicles India's epic journey of building a self-reliant, inclusive, and innovative digital future.</p>
+                <a href="#journey" class="btn btn-glow fade-in" style="transition-delay: 0.4s;">Explore the Saga</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="journey" class="content-section">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>A Decade of Digital Transformation</h2>
+            </div>
+            <div class="row align-items-center">
+                <div class="col-lg-6 fade-in">
+                    <h3>From Analog to an API-First Nation</h3>
+                    <p class="text-slate mb-4">India's story isn't just about adopting technology; it's about architecting it for public good. By building open, interoperable, and scalable Digital Public Infrastructure (DPI), India leapfrogged decades of traditional development, transforming governance, finance, and daily life for over a billion people.</p>
+                    <div class="glass-card">
+                        <h4 class="mb-4">The Core Philosophy:</h4>
+                        <ul class="list-unstyled">
+                            <li class="d-flex mb-3"><i class="fas fa-users-cog fa-2x text-saffron me-3"></i><div><strong>Population Scale:</strong> Building systems designed from day one for 1.3 billion+ people.</div></li>
+                            <li class="d-flex mb-3"><i class="fas fa-hand-holding-dollar fa-2x text-saffron me-3"></i><div><strong>Inclusion by Design:</strong> Ensuring technology empowers the most marginalized citizens first.</div></li>
+                            <li class="d-flex"><i class="fas fa-cogs fa-2x text-saffron me-3"></i><div><strong>Open & Interoperable:</strong> Creating public digital "railroads" to foster private innovation on top.</div></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-center mt-5 mt-lg-0 fade-in" style="transition-delay: 0.2s;">
+                    <img src="https://images.unsplash.com/photo-1610986603124-cce54467d305?q=80&w=1887&auto=format&fit=crop" alt="Digital India concept" class="img-fluid rounded-3 shadow-lg">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="india-stack" class="content-section" style="background-color: var(--light-navy);">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>The India Stack Explained</h2>
+            </div>
+            <div class="row">
+                <p class="text-center lead col-lg-8 mx-auto mb-5 fade-in">India Stack is not a single app, but a revolutionary set of open APIs and digital goods that act as a shared technological backbone. It allows governments, businesses, and startups to build and deliver services with unprecedented speed and scale.</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6 fade-in">
+                    <div class="stack-card text-center p-4">
+                        <div class="icon"><i class="fas fa-id-card"></i></div>
+                        <h4>Identity Layer (Aadhaar)</h4>
+                        <p class="text-slate">Provides a universal, biometric-based digital identity, eliminating fraud and ensuring targeted delivery of services.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 fade-in" style="transition-delay: 0.1s;">
+                    <div class="stack-card text-center p-4">
+                        <div class="icon"><i class="fas fa-money-check-dollar"></i></div>
+                        <h4>Payments Layer (UPI)</h4>
+                        <p class="text-slate">Enables instant, real-time payments between any two bank accounts, democratizing digital transactions for all.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 fade-in" style="transition-delay: 0.2s;">
+                    <div class="stack-card text-center p-4">
+                        <div class="icon"><i class="fas fa-file-signature"></i></div>
+                        <h4>Data Layer (DigiLocker & AA)</h4>
+                        <p class="text-slate">Allows citizens to store and share official documents electronically with consent, moving from paper-based to paperless governance.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="stats-section content-section">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Impact by the Numbers</h2>
+            </div>
+            <div class="row text-center">
+                <div class="col-md-3 col-6 mb-4 fade-in">
+                    <div class="stat-number" data-target="1.3">0</div>
+                    <div class="stat-label">Billion+ Aadhaar IDs</div>
+                </div>
+                <div class="col-md-3 col-6 mb-4 fade-in" style="transition-delay: 0.1s;">
+                    <div class="stat-number" data-target="12">0</div>
+                    <div class="stat-label">Billion+ Monthly UPI Transactions</div>
+                </div>
+                <div class="col-md-3 col-6 mb-4 fade-in" style="transition-delay: 0.2s;">
+                    <div class="stat-number" data-target="500">0</div>
+                    <div class="stat-label">Million+ Bank Accounts Opened</div>
+                </div>
+                <div class="col-md-3 col-6 mb-4 fade-in" style="transition-delay: 0.3s;">
+                    <div class="stat-number" data-target="46">0</div>
+                    <div class="stat-label">% of Global Real-Time Payments</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="milestones" class="content-section">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Milestones of Digital Freedom</h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-line">
+                    <div class="timeline-line-progress"></div>
+                </div>
+                <div class="timeline-item fade-in">
+                    <div class="timeline-icon"><i class="fas fa-fingerprint"></i></div>
+                    <div class="timeline-content">
+                        <h3>2009: The Aadhaar Project Begins</h3>
+                        <p class="text-slate">The launch of the world's most ambitious digital identity program, laying the foundational "digital bedrock" for India's transformation.</p>
+                    </div>
+                </div>
+                <div class="timeline-item fade-in">
+                    <div class="timeline-icon"><i class="fas fa-mobile-alt"></i></div>
+                    <div class="timeline-content">
+                        <h3>2016: The UPI Revolution</h3>
+                        <p class="text-slate">Unified Payments Interface (UPI) goes live, fundamentally altering the payments landscape and making digital transactions accessible to everyone with a phone.</p>
+                    </div>
+                </div>
+                <div class="timeline-item fade-in">
+                    <div class="timeline-icon"><i class="fas fa-flag"></i></div>
+                    <div class="timeline-content">
+                        <h3>2020: Atmanirbhar Bharat & PLI Schemes</h3>
+                        <p class="text-slate">A major push for self-reliance in electronics and technology manufacturing, dramatically reducing import dependency and creating a local ecosystem.</p>
+                    </div>
+                </div>
+                <div class="timeline-item fade-in">
+                    <div class="timeline-icon"><i class="fas fa-syringe"></i></div>
+                    <div class="timeline-content">
+                        <h3>2021: CoWIN Powers Vaccination</h3>
+                        <p class="text-slate">India builds the CoWIN platform, a massive digital backbone to manage the world's largest COVID-19 vaccination drive for over a billion people.</p>
+                    </div>
+                </div>
+                 <div class="timeline-item fade-in">
+                    <div class="timeline-icon"><i class="fas fa-shopping-cart"></i></div>
+                    <div class="timeline-content">
+                        <h3>2022: Launch of ONDC</h3>
+                        <p class="text-slate">The Open Network for Digital Commerce (ONDC) is introduced to unbundle e-commerce, challenging monopolies and empowering small sellers across India.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="innovations" class="content-section" style="background-color: var(--light-navy);">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Homegrown Innovations</h2>
+            </div>
+            <div class="row g-4 justify-content-center">
+                <div class="col-lg-4 col-md-6 fade-in">
+                    <div class="innovation-card">
+                        <img src="https://images.unsplash.com/photo-1613243555978-636c48dc653c?q=80&w=1887&auto=format&fit=crop" class="card-img-top" alt="UPI">
+                        <div class="card-body p-4">
+                            <h5 class="card-title">UPI: Financial Democracy</h5>
+                            <p class="card-text text-slate">More than a payment system, it's a tool for economic empowerment, enabling street vendors and large corporations to transact with the same ease.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 fade-in" style="transition-delay: 0.1s;">
+                    <div class="innovation-card">
+                        <img src="https://images.unsplash.com/photo-1644322439196-f365dab0906a?q=80&w=1887&auto=format&fit=crop" class="card-img-top" alt="ONDC">
+                        <div class="card-body p-4">
+                            <h5 class="card-title">ONDC: The Next E-commerce Wave</h5>
+                            <p class="card-text text-slate">An open network designed to level the playing field in digital commerce, allowing any small seller to be discoverable and sell on any participating app.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 fade-in" style="transition-delay: 0.2s;">
+                    <div class="innovation-card">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop" class="card-img-top" alt="CoWIN">
+                        <div class="card-body p-4">
+                             <h5 class="card-title">CoWIN: Public Health at Scale</h5>
+                            <p class="card-text text-slate">A testament to India's ability to execute complex, large-scale digital projects under pressure, delivering over 2 billion vaccine doses seamlessly.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="global-impact" class="content-section">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>India's DPI for the World</h2>
+            </div>
+            <div class="row align-items-center">
+                <div class="col-lg-6 fade-in">
+                    <h3>From Local Success to Global Standard</h3>
+                    <p class="text-slate mb-4">India is no longer just a recipient of technology but a provider of digital solutions. Recognizing the power of DPI to accelerate development, many nations in the Global South are now partnering with India to build their own digital foundations.</p>
+                     <div class="glass-card">
+                        <h4 class="mb-3">Global Adoption Includes:</h4>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><span class="badge bg-success me-2">UPI</span> France, UAE, Singapore, Sri Lanka, Mauritius</li>
+                            <li class="mb-2"><span class="badge bg-warning text-dark me-2">Aadhaar Model</span> Philippines, Morocco, Ethiopia</li>
+                            <li><span class="badge bg-info text-dark me-2">CoWIN Tech</span> Guyana, Jamaica, and 10+ other nations</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6 mt-5 mt-lg-0 fade-in" style="transition-delay: 0.2s;">
+                    <div id="map-container" class="shadow-lg">
+                        <svg viewBox="0 0 1000 500" xmlns="http://www.w3.org/2000/svg">
+                            <path class="country" d="M100,200 L150,150 L200,200 L250,150 L300,200 L350,150 L400,200 L450,150 L500,200 L450,250 L400,300 L350,250 L300,300 L250,250 L200,300 L150,250 Z" />
+                            <path id="india" class="country adopter-country" d="M600,250 L650,220 L700,250 L650,320 Z" data-bs-toggle="tooltip" title="India: The Originator"/>
+                            <path id="france" class="country adopter-country" d="M450,100 L470,90 L490,100 L470,120 Z" data-bs-toggle="tooltip" title="France: UPI Adoption"/>
+                            <path id="uae" class="country adopter-country" d="M550,200 L570,190 L590,200 L570,220 Z" data-bs-toggle="tooltip" title="UAE: UPI Adoption"/>
+                            <path id="philippines" class="country adopter-country" d="M800,280 L820,270 L840,280 L820,300 Z" data-bs-toggle="tooltip" title="Philippines: Aadhaar Model"/>
+                             <path id="morocco" class="country adopter-country" d="M400,180 L420,170 L440,180 L420,200 Z" data-bs-toggle="tooltip" title="Morocco: Aadhaar Model"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="future" class="content-section" style="background-color: var(--light-navy);">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>The Road to 2047</h2>
+            </div>
+             <div class="row align-items-center">
+                <div class="col-lg-6 text-center mb-5 mb-lg-0 fade-in">
+                     <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop" alt="Future Technology" class="img-fluid rounded-3 shadow-lg">
+                </div>
+                <div class="col-lg-6 fade-in" style="transition-delay: 0.2s;">
+                    <h3>Building India's 'Tech-ade'</h3>
+                    <p class="text-slate mb-4">The journey is far from over. India is now focused on moving up the value chain, transitioning from a technology adopter to a deep-tech creator. The vision is clear: achieve technological leadership in key areas by the 100th year of independence.</p>
+                    <div class="accordion" id="futureAccordion">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header"><button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#c1">AI for All (IndiaAI)</button></h2>
+                            <div id="c1" class="accordion-collapse collapse show" data-bs-parent="#futureAccordion">
+                                <div class="accordion-body">
+                                    The IndiaAI mission is a multi-pronged strategy to establish the country as a global leader in Artificial Intelligence. It focuses on three core pillars: providing access to high-performance computing infrastructure for startups and researchers, developing diverse, large-scale datasets relevant to India's population, and promoting 'AI for Good' initiatives. The goal is to apply AI to solve critical challenges in agriculture (precision farming), healthcare (disease prediction), and education (personalized learning), ensuring that the benefits of AI are accessible and equitable for all citizens.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                             <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#c2">Semiconductor Independence</button></h2>
+                            <div id="c2" class="accordion-collapse collapse" data-bs-parent="#futureAccordion">
+                                <div class="accordion-body">
+                                    The 'Semicon India' program is a monumental $10 billion government initiative aimed at creating an end-to-end semiconductor ecosystem. This is not just about manufacturing; it covers the entire value chain, including chip design (fabless), fabrication (fabs), and assembly/testing (ATMP units). By attracting global giants and nurturing domestic champions, the mission seeks to reduce India's critical dependence on imports, bolster national security, and create a resilient supply chain for the burgeoning electronics, automotive, and defense industries, positioning India as a key player in the global semiconductor landscape.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                             <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#c3">Quantum Computing Leap</button></h2>
+                            <div id="c3" class="accordion-collapse collapse" data-bs-parent="#futureAccordion">
+                                <div class="accordion-body">
+                                    The National Quantum Mission (NQM) is India's ambitious foray into the next frontier of computing. This eight-year mission aims to seed, nurture, and scale up scientific and industrial R&D in Quantum Technologies. Key objectives include developing intermediate-scale quantum computers with 50-1000 qubits, creating secure quantum communication networks, and designing advanced quantum sensors. The NQM will establish thematic hubs for focused research, fostering a new generation of scientists and engineers to ensure India can harness the disruptive potential of quantum mechanics for breakthroughs in medicine, materials science, and secure communications.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 mb-5 mb-lg-0">
+                    <a class="navbar-brand text-white" href="#"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/41/Flag_of_India.svg/125px-Flag_of_India.svg.png" alt="Indian Flag"> VIRASAT</a>
+                    <p class="mt-3">A tribute to the architects of India's digital destiny. Chronicling the journey towards a self-reliant, innovative, and inclusive technological future.</p>
+                    <div class="social-links mt-4">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6">
+                    <h5 class="font-weight-bold">Navigate</h5>
+                    <ul class="list-unstyled footer-links">
+                        <li><a href="#journey">The Journey</a></li>
+                        <li><a href="#milestones">Milestones</a></li>
+                        <li><a href="#innovations">Innovations</a></li>
+                        <li><a href="#future">Future</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6">
+                    <h5 class="font-weight-bold">Resources</h5>
+                    <ul class="list-unstyled footer-links">
+                        <li><a href="#">India Stack</a></li>
+                        <li><a href="#">NPCI</a></li>
+                        <li><a href="#">MeitY</a></li>
+                        <li><a href="#">Digital India</a></li>
+                    </ul>
+                </div>
+                 <div class="col-lg-3 col-md-4">
+                     <h5 class="font-weight-bold">Join the Movement</h5>
+                     <p>Stay updated on India's digital saga. Subscribe to our newsletter.</p>
+                     <form>
+                        <div class="input-group">
+                            <input type="email" class="form-control" placeholder="Your Email">
+                            <button class="btn btn-primary" type="submit"><i class="fas fa-paper-plane"></i></button>
+                        </div>
+                     </form>
+                 </div>
+            </div>
+            <hr class="my-4" style="border-color: var(--light-blue);">
+            <div class="text-center">
+                <p>&copy; 2025 Virasat. Crafted with <i class="fas fa-heart text-danger"></i> in India, for the World.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+
+            // Navbar Active Link on Scroll
+            const sections = document.querySelectorAll('section');
+            const navLi = document.querySelectorAll('nav .navbar-nav .nav-item .nav-link');
+            window.addEventListener('scroll', ()=> {
+                let current = '';
+                sections.forEach( section => {
+                    const sectionTop = section.offsetTop;
+                    if(pageYOffset >= sectionTop - 120){
+                        current = section.getAttribute('id');
+                    }
+                })
+                navLi.forEach( a => {
+                    a.classList.remove('active');
+                    if(a.getAttribute('href') == '#'+current){
+                        a.classList.add('active');
+                    }
+                })
+            });
+
+            // Intersection Observer for Animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.fade-in').forEach((el) => {
+                observer.observe(el);
+            });
+
+            // Counter Animation
+            const counterObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const el = entry.target;
+                        const target = +el.getAttribute('data-target');
+                        const duration = 2000;
+                        const stepTime = 20;
+                        const steps = duration / stepTime;
+                        const increment = target / steps;
+                        let current = 0;
+                        
+                        const timer = setInterval(() => {
+                            current += increment;
+                            if (current >= target) {
+                                clearInterval(timer);
+                                el.innerText = target.toLocaleString('en-IN') + (el.innerText.includes('B') ? 'B+' : (el.innerText.includes('%') ? '%' : ''));
+                                if (target.toString().includes('.')) {
+                                     el.innerText = target.toFixed(1) + "B+";
+                                } else {
+                                     el.innerText = target.toLocaleString('en-IN') + (el.innerHTML.includes('+') ? '+' : '');
+                                }
+                            } else {
+                                 el.innerText = Math.round(current).toLocaleString('en-IN') + (target.toString().includes('.') ? '' : (el.innerHTML.includes('+') ? '+' : ''));
+                            }
+                        }, stepTime);
+                        
+                        observer.unobserve(el);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            document.querySelectorAll('.stat-number').forEach(el => {
+                counterObserver.observe(el);
+            });
+
+            // Timeline line draw animation
+            const timeline = document.querySelector('.timeline');
+            if(timeline) {
+                const timelineLine = document.querySelector('.timeline-line-progress');
+                window.addEventListener('scroll', () => {
+                    const timelineRect = timeline.getBoundingClientRect();
+                    const windowHeight = window.innerHeight;
+                    const scrollPercent = (windowHeight - timelineRect.top) / (windowHeight + timelineRect.height);
+                    if (scrollPercent >= 0 && scrollPercent <= 1) {
+                        timelineLine.style.height = (scrollPercent * 100) + '%';
+                    }
+                });
+            }
+
+            // Bootstrap Tooltips
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+              return new bootstrap.Tooltip(tooltipTriggerEl)
+            })
+
+        });
+    </script>
+</body>
+</html>
